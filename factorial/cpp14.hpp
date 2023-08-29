@@ -46,7 +46,7 @@ constexpr int iterativeConstexprFactorial(int x) {
 
 }
 
-auto testCpp14() {
+inline auto testCpp14() {
     const int arg = 5;
 
     auto runtimeRes = ::runtimeFactorial(arg);

@@ -39,7 +39,7 @@ namespace cpp20 {
     #endif
 };
 
-auto testCpp20() {
+inline auto testCpp20() {
     const int arg = 5;
 
     auto runtimeRes = ::runtimeFactorial(arg);
