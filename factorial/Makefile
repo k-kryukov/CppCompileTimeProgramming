@@ -1,4 +1,4 @@
-all: run-cpp11 run-cpp14 run-cpp20 clean
+all: run-cpp11 run-cpp14 run-cpp17 run-cpp20 clean
 
 clean:
 	rm -f *.out
