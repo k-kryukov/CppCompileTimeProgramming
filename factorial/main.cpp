@@ -8,28 +8,29 @@
 #include "cpp14.hpp"
 #endif
 
-#ifdef CPP17
-#include "cpp17.hpp"
+#ifdef CPP20
+#include "cpp20.hpp"
 #endif
 
 int main() {
     #ifdef CPP11
     auto pair = testCpp11();
-    std::cout << pair.first << "! = " << pair.second << std::endl;
+    std::cout << "C++11: " << pair.first << "! = " << pair.second << std::endl;
     #endif
 
     #ifdef CPP14
     int arg, result;
     std::tie(arg, result) = testCpp14();
-    std::cout << arg << "! = " << result << std::endl;
+    std::cout << "C++14: " << arg << "! = " << result << std::endl;
     #endif
 
     #ifdef CPP17
-    testCpp17();
+    // nothing to show here except structured bindings
     #endif
 
     #ifdef CPP20
-    testCpp20();
+    auto [arg, result] = testCpp20();
+    std::cout << "C++20: " << arg << "! = " << result << std::endl;
     #endif
 
     return 0;
