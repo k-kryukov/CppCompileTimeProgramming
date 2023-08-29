@@ -20,15 +20,28 @@ struct structFactorial<0> {
     };
 };
 
-// constexpr factorial
-constexpr int constexprFactorial(int x) {
+// constexpr recursive
+constexpr int recursiveConstexprFactorial(int x) {
     // throw idiom
     if (x < 0)
         throw std::runtime_error{"Factorial argument must be non-negative"};
     if (x == 0)
         return 1;
 
-    return x * constexprFactorial(x - 1);
+    return x * recursiveConstexprFactorial(x - 1);
+}
+
+// constexpr iterative
+constexpr int iterativeConstexprFactorial(int x) {
+    // throw idiom
+    if (x < 0)
+        throw std::runtime_error{"Factorial argument must be non-negative"};
+
+    auto res = 1;
+    while (x > 0)
+        res *= x--;
+
+    return res;
 }
 
 }
@@ -38,16 +51,17 @@ auto testCpp14() {
 
     auto runtimeRes = ::runtimeFactorial(arg);
     constexpr auto templateFact = cpp14::structFactorial<arg>::value;
-    constexpr auto constexprFact = cpp14::constexprFactorial(arg);
+    constexpr auto recursiveConstexprFact = cpp14::recursiveConstexprFactorial(arg);
+    constexpr auto iterativeConstexprFact = cpp14::iterativeConstexprFactorial(arg);
 
     // constexpr auto badCall1 = cpp14::structFactorial<-1>::value;
     // constexpr auto badCall2 = cpp14::constexprFactorial(-1);
 
     static_assert(
-        templateFact == constexprFact
+        templateFact == iterativeConstexprFact && iterativeConstexprFact == recursiveConstexprFact
     );
 
-    assert (runtimeRes == templateFact && templateFact == constexprFact);
+    assert (runtimeRes == templateFact);
 
     return std::tuple<int, int>{arg, runtimeRes};
 }
