@@ -10,12 +10,12 @@ namespace cpp11 {
     };
 
     template<>
-    inline struct structFibonacci<1> {
+    struct structFibonacci<1> {
         static const auto value = 1;
     };
 
     template<>
-    inline struct structFibonacci<0> {
+    struct structFibonacci<0> {
         static const auto value = 0;
     };
 }

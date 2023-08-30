@@ -7,7 +7,7 @@ run-cpp11: clean
 	g++ -std=c++11 -DCPP11 main.cpp -o program.out && ./program.out
 
 run-cpp14: clean
-	g++ -std=c++14 -DCPP14 main.cpp -o program.out && ./program.out
+	echo "No specific code for cpp14"
 
 run-cpp17: clean
 	echo "No specific code for cpp17"
